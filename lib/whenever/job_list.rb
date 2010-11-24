@@ -50,6 +50,14 @@ module Whenever
           options[:output] = (options[:cron_log] || @cron_log) if defined?(@cron_log) || options.has_key?(:cron_log)
           # :output is the newer, more flexible option.
           options[:output] = @output if defined?(@output) && !options.has_key?(:output)
+
+          if @options[:second]
+            array = []
+            (60 / @options[:second]).times do
+              array << "#{options[:template]};"
+            end
+            options[:template] = array.join " sleep #{@options[:second].to_s}; "
+          end
           
           @jobs[@current_time_scope] ||= []
           @jobs[@current_time_scope] << Whenever::Job.new(@options.merge(@set_variables).merge(options))

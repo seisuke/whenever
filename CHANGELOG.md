@@ -1,3 +1,7 @@
+### 0.6.3 / November 24th, 2010
+
+* Added :second option.
+
 ### 0.6.2 / October 26th, 2010
 
 * --clear-crontab option completely removes entries. #63 [Javan Makhmali]
